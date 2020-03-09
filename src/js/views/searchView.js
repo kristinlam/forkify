@@ -8,6 +8,11 @@ export const clearInput = () => {
     elements.searchInput.value ='';
 }
 
+// Function: Clear results
+export const clearResults = () => {
+    elements.searchResList.innerHTML = '';
+}
+
 // Function: Prints one recipe
 const renderRecipe = recipe => {
     const markup = `
