@@ -1,4 +1,5 @@
 import Search from './models/Search';
+import Recipe from './models/Recipe';
 import * as searchView from './views/searchView';
 import { elements, renderLoader, clearLoader } from './views/base';
 
@@ -9,6 +10,10 @@ import { elements, renderLoader, clearLoader } from './views/base';
 - Liked recipes
 */
 const state = {};
+
+/*
+Search Controller
+*/
 
 const controlSearch = async () => {
     // 1) Get query from view
@@ -38,3 +43,31 @@ elements.searchForm.addEventListener('submit', e => {
     e.preventDefault();
     controlSearch();
 });
+
+
+
+/*
+Recipe Controller
+*/
+
+const controlRecipe = () => {
+    // Get ID from url
+    const id = window.location.hash.replace('#', '');
+    console.log(id);
+
+    if (id) {
+        // Prepare the UI for changes
+
+        // Create new recipe object
+
+        // Get recipe data
+
+        // Calculate servings and time
+
+        // Render recipe
+
+    }
+}
+
+// Everytime the hash in the URL changes, run controlRecipe
+window.addEventListener('hashchange', controlRecipe);
