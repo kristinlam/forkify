@@ -50,24 +50,34 @@ elements.searchForm.addEventListener('submit', e => {
 Recipe Controller
 */
 
-const controlRecipe = () => {
+const controlRecipe = async () => {
     // Get ID from url
     const id = window.location.hash.replace('#', '');
     console.log(id);
 
     if (id) {
-        // Prepare the UI for changes
+        // Prepare the UI for changes 
 
         // Create new recipe object
+        state.recipe = new Recipe(id);
 
-        // Get recipe data
+        try {
+            // Get recipe data
+            await state.recipe.getRecipe();
 
-        // Calculate servings and time
+            // Calculate servings and time
+            state.recipe.calcTime();
+            state.recipe.calcServings();
 
-        // Render recipe
+            // Render recipe
+            console.log(state.recipe);
+        } catch (err) {
+            alert('Error processing recipe.');
+        }
 
     }
 }
 
+
 // Everytime the hash in the URL changes, run controlRecipe
-window.addEventListener('hashchange', controlRecipe);
+['hashchange', 'load'].forEach(event => window.addEventListener(event, controlRecipe));
